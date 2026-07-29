@@ -13,7 +13,6 @@ The application simulates real-world regulatory data that may contain missing da
 * React
 * Vite
 * TypeScript
-* TanStack Table / Query
 
 ### Backend
 
