@@ -6,6 +6,13 @@ The application simulates real-world regulatory data that may contain missing da
 
 ---
 
+## Live Demo
+
+**Live Application:** https://vercel-frontend-zeta-nine.vercel.app/
+**Backend Health Check:**  https://vercel-backend-ten-zeta.vercel.app/health
+
+---
+
 ## Tech Stack
 
 ### Frontend
