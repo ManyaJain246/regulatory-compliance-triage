@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
-const API_BASE_URL = 'http://127.0.0.1:4000';
+const API_BASE_URL = 'https://vercel-backend-ten-zeta.vercel.app';
 
 type ActionItem = {
   id: string;
