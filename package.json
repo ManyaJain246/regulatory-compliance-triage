@@ -1,0 +1,13 @@
+{
+  "name": "artixio",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "concurrently -n frontend,server -c blue,green \"npm --prefix frontend run dev -- --host 0.0.0.0\" \"npm --prefix server run dev\"",
+    "start": "npm run dev",
+    "install:all": "npm install --prefix frontend && npm install --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}

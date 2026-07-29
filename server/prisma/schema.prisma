@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model RegulatoryAuthority {
+  id           String                 @id @default(cuid())
+  name         String
+  jurisdiction String
+  contactEmail String?
+  directives   ComplianceDirective[]
+  createdAt    DateTime               @default(now())
+  updatedAt    DateTime               @updatedAt
+}
+
+model ComplianceDirective {
+  id            String                 @id @default(cuid())
+  authorityId   String
+  authority     RegulatoryAuthority    @relation(fields: [authorityId], references: [id])
+  title         String
+  code          String
+  summary       String
+  effectiveDate DateTime?
+  status        String                 @default("Pending")
+  severity      String                 @default("Medium")
+  rawText       String?
+  actionItems   ActionItem[]
+  createdAt     DateTime               @default(now())
+  updatedAt     DateTime               @updatedAt
+}
+
+model ActionItem {
+  id           String                @id @default(cuid())
+  directiveId  String
+  directive    ComplianceDirective   @relation(fields: [directiveId], references: [id])
+  title        String
+  description  String
+  status       String                @default("Pending")
+  owner        String?
+  dueDate      DateTime?
+  priority     String                @default("Medium")
+  flagged      Boolean               @default(false)
+  flagReason   String?
+  createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
+}
