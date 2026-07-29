@@ -49,7 +49,7 @@ Make sure the following are installed:
 
 ```bash
 git clone https://github.com/ManyaJain246/regulatory-compliance-triage.git
-cd Artixio
+cd regulatory-compliance-triage
 ```
 
 ---
@@ -59,7 +59,7 @@ cd Artixio
 Install dependencies for the backend:
 
 ```bash
-cd backend
+cd server
 npm install
 ```
 
@@ -76,7 +76,7 @@ npm install
 
 Create a PostgreSQL database.
 
-Create a `.env` file inside the backend directory:
+Create a `.env` file inside the server directory:
 
 ```env
 DATABASE_URL="postgresql://USERNAME:PASSWORD@localhost:5432/compliance_db"
@@ -123,6 +123,7 @@ The seed data intentionally includes messy and inconsistent data such as:
 * Missing owners
 
 This allows the application to demonstrate how regulatory data quality issues are identified and handled.
+The Prisma seed script populates the PostgreSQL database with relational mock data. The current triage API uses a sanitized in-memory mock store for the interactive prototype and its REST API operations.
 
 ---
 
@@ -323,6 +324,27 @@ The tests verify important functionality such as:
 
 # Application Flow
 
+The application consists of a relational PostgreSQL database layer and a triage API layer used by the current prototype.
+
+### Database and Seed Layer
+
+```text
+Prisma Seed Script
+        │
+        ▼
+Prisma ORM
+        │
+        ▼
+PostgreSQL Database
+        │
+        ├── Regulatory Authorities
+        ├── Compliance Directives
+        └── Action Items
+
+```
+
+# Triage Application Layer
+
 ```text
 Compliance Officer
         │
@@ -333,16 +355,9 @@ React + Vite Frontend
         ▼
 Node.js + Express Backend
         │
-        │ Zod Validation
-        ▼
-Prisma ORM
-        │
-        ▼
-PostgreSQL Database
-        │
-        ├── Regulatory Authorities
-        ├── Compliance Directives
-        └── Action Items
-```
+        ├── Zod Validation
+        ├── Data Sanitization
+        └── In-Memory Mock Store
+
 
 The frontend acts as the decision layer where users can review regulatory updates, filter records, identify flagged data, and update action items.
