@@ -49,8 +49,8 @@ Make sure the following are installed:
 ## 1. Clone the Repository
 
 ```bash
-git clone <your-github-repository-url>
-cd <project-folder>
+git clone https://github.com/ManyaJain246/regulatory-compliance-triage.git
+cd Artixio
 ```
 
 ---
