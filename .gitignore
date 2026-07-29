@@ -6,3 +6,5 @@ build/
 coverage/
 *.log
 server/.agents/
+server/.claude/
+server/.windsurf/
